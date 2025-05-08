@@ -89,13 +89,14 @@
       background-color: #b71c1c;
     }
 
+    /* صفحه قفل */
     #lockScreen {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       height: 100vh;
-      background: white;
+      background: #ceeff7; /* رنگ پس‌زمینه جدید */
       z-index: 9999;
       position: fixed;
       top: 0;
@@ -147,8 +148,8 @@
 
   <!-- صفحه قفل -->
   <div id="lockScreen">
-    <h2>لطفاً رمز عبور را وارد کنید</h2>
-    <input type="password" id="accessCode" placeholder="رمز عبور">
+    <h2>Please enter UC number</h2>
+    <input type="password" id="accessCode" placeholder="Enter UC Number">
     <button onclick="unlockSite()">ورود</button>
     <div id="errorLock"></div>
   </div>
@@ -175,7 +176,7 @@
     </footer>
   </div>
 
-  <!-- پنجره ورود رمز دوم -->
+  <!-- پنجره ورود رمز -->
   <div id="passwordPrompt" style="display: none;">
     <p>Enter UC number:</p>
     <input type="password" id="passwordInput" placeholder="Enter UC number">
@@ -199,7 +200,7 @@
           document.getElementById("siteContent").style.display = "block";
         }, 3000);
       } else {
-        document.getElementById("errorLock").innerText = "رمز نادرست است.";
+        document.getElementById("errorLock").innerText = "UC not found  .";
       }
     }
 
