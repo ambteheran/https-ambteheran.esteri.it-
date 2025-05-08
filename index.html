@@ -96,7 +96,7 @@
       align-items: center;
       flex-direction: column;
       height: 100vh;
-      background: white;
+      background-color: darkblue;
       z-index: 9999;
       position: fixed;
       top: 0;
@@ -146,17 +146,17 @@
 </head>
 <body>
 
-  <!-- صفحه قفل -->
+  <!-- Enter UC -->
   <div id="lockScreen">
-    <h2>لطفاً رمز عبور را وارد کنید</h2>
-    <input type="password" id="accessCode" placeholder="رمز عبور">
-    <button onclick="unlockSite()">ورود</button>
+    <h2>Please enter UC Number</h2>
+    <input type="password" id="accessCode" placeholder=" UC Number">
+    <button onclick="unlockSite()">login</button>
     <div id="errorLock"></div>
   </div>
 
   <!-- لودینگ گیف -->
   <div id="loadingScreen">
-    <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading...">
+    <img src="files/loading.gif" alt="Loading...">
   </div>
 
   <!-- محتوای سایت اصلی -->
@@ -202,7 +202,7 @@
           document.getElementById("siteContent").style.display = "block";
         }, 3000);
       } else {
-        document.getElementById("errorLock").innerText = "رمز نادرست است.";
+        document.getElementById("errorLock").innerText = " UC not found.";
       }
     }
 
