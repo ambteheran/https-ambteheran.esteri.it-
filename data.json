@@ -64,19 +64,4 @@
       "meeting": "#"
     }
   },
-  // ...
-  // ادامه کاربران تا کاربر 50
-  {
-    "firstName": "کاربر",
-    "lastName": "پنجاه",
-    "fatherName": "پدرپنجاه",
-    "caseNumber": "100050",
-    "idNumber": "ID100050",
-    "links": {
-      "result": "#",
-      "passport": "#",
-      "coLetter": "#",
-      "meeting": "#"
-    }
-  }
 ]
