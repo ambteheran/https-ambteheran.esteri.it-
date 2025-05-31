@@ -2,126 +2,66 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>داشبورد درخواست مهاجرت - ایتالیا</title>
+  <title>داشبورد رسمی - درخواست مهاجرت</title>
   <style>
     body {
-      margin: 0;
-      font-family: "Tahoma", sans-serif;
-      background-color: #f1f1f1;
+      font-family: sans-serif;
+      direction: rtl;
+      background-color: #eef0f3;
+      padding: 40px;
     }
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 20px;
+    h1 {
+      color: #003366;
       text-align: center;
-      font-size: 24px;
     }
-    nav {
-      background-color: #e6e6e6;
-      padding: 15px;
-      display: flex;
-      justify-content: space-around;
-    }
-    nav button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background-color: #004080;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    nav button:disabled {
-      background-color: #888;
-      cursor: not-allowed;
-    }
-    main {
-      padding: 20px;
-    }
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-    }
-    #upload-section {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+    .dashboard {
+      background-color: white;
+      padding: 30px;
       max-width: 500px;
-      margin: 30px auto;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input[type="file"] {
-      display: block;
-      margin-bottom: 15px;
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin: 15px 0;
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      background-color: #0066cc;
+      color: white;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    button:hover:enabled {
+      background-color: #004d99;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
 
-  <header>داشبورد رسمی درخواست مهاجرت به جمهوری ایتالیا</header>
+  <div class="dashboard">
+    <h1>داشبورد رسمی درخواست مهاجرت به ایتالیا</h1>
 
-  <nav>
-    <button onclick="loadResult()">نتیجه درخواست</button>
-    <button onclick="document.getElementById('upload-section').style.display='block'">آپلود پاسپورت</button>
-    <button disabled>نامه سی‌او</button>
-    <button disabled>قرار ملاقات حضوری</button>
-  </nav>
-
-  <main>
-    <iframe id="viewer" style="display: none;"></iframe>
-
-    <div id="upload-section" style="display: none;">
-      <h3>آپلود پاسپورت</h3>
-      <input type="file" id="passport" accept="application/pdf" />
-      <button onclick="uploadPassport()">ارسال</button>
-      <p id="upload-status"></p>
-    </div>
-  </main>
+    <button onclick="redirectToResult()">۱. نتیجه درخواست</button>
+    <button disabled>۲. آپلود پاسپورت (غیرفعال)</button>
+    <button disabled>۳. نامه سی‌او (غیرفعال)</button>
+    <button disabled>۴. قرار ملاقات حضوری (غیرفعال)</button>
+  </div>
 
   <script>
-    // لینک خاص برای نمایش نتیجه (مثلاً صفحه تایید درخواست)
-    const resultLink = "https://drive.google.com/file/d/1holrYPXTkCkezO0oA1tUwC61mDKSJO2L/view?usp=drive_link"; // ← این لینک را به لینک واقعی تغییر بده
-
-    function loadResult() {
-      const viewer = document.getElementById("viewer");
-      viewer.src = resultLink;
-      viewer.style.display = "block";
-    }
-
-    async function uploadPassport() {
-      const fileInput = document.getElementById('passport');
-      const file = fileInput.files[0];
-      if (!file || file.type !== "application/pdf") {
-        alert("لطفاً فقط فایل PDF انتخاب کنید.");
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const base64 = reader.result.split(',')[1];
-
-        const payload = {
-          name: "کاربر", // اگر نام کاربر دارید از URL بگیر
-          lastName: "موقت", 
-          fileData: base64,
-          fileName: file.name,
-          mimeType: file.type
-        };
-
-        const response = await fetch("https://script.google.com/macros/s/AKfycbw16uY65r72N0UieELQCB7zHYfBta_jmg0xNFH7u7ITGhvqsOR7X1H6aKbp6UaRmscz7w/exec", { // ← آدرس Google Apps Script
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-        document.getElementById("upload-status").textContent = result.success ? "آپلود موفقیت‌آمیز بود." : "خطا در آپلود.";
-      };
-      reader.readAsDataURL(file);
+    function redirectToResult() {
+      // 🔗 لینک فایل نتیجه (لطفاً FILE_ID را جایگزین کن)
+      const fileId = "1ABCxyz12345678"; // ← جایگزین شود با File ID واقعی
+      const url = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      window.location.href = url;
     }
   </script>
+
 </body>
 </html>
