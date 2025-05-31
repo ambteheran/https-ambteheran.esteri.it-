@@ -43,7 +43,4 @@ fetch('data.json')
       } else {
         errorEl.textContent = "No matching user found. Please check your information.";
       }
-      function logout() {
-    localStorage.clear(); // پاک کردن اطلاعات ذخیره‌شده کاربر
-    window.location.reload(); // بارگذاری دوباره صفحه و بازگشت به فرم ورود
     });
