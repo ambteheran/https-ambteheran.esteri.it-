@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>داشبورد کاربر</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      background: #f4f4f4;
+      padding: 40px;
+      text-align: center;
+    }
+    button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>داشبورد کاربری</h2>
+  <button id="btn-result">نتیجه درخواست</button>
+  <button id="btn-passport">آپلود پاسپورت</button>
+  <button id="btn-co" disabled>نامه سی‌او</button>
+  <button id="btn-meeting" disabled>قرار ملاقات حضوری</button>
+
+  <script>
+    const links = JSON.parse(localStorage.getItem('userLinks'));
+
+    if (links) {
+      document.getElementById('btn-result').onclick = () => window.location.href = links.result;
+      document.getElementById('btn-passport').onclick = () => window.location.href = links.passport;
+    } else {
+      alert("دسترسی غیرمجاز. لطفاً ابتدا وارد شوید.");
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
