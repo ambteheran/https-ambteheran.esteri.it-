@@ -1,29 +1,47 @@
-document.getElementById('login-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
+fetch('data.json')
+  .then(res => res.json())
+  .then(users => {
+    const loginForm = document.getElementById("loginForm");
+    const dashboard = document.getElementById("dashboard");
+    const errorEl = document.getElementById("error");
+    const loginSection = document.getElementById("login-section");
 
-  const formData = {
-    firstName: document.getElementById('firstName').value.trim(),
-    lastName: document.getElementById('lastName').value.trim(),
-    fatherName: document.getElementById('fatherName').value.trim(),
-    caseNumber: document.getElementById('caseNumber').value.trim(),
-    idNumber: document.getElementById('idNumber').value.trim()
-  };
+    loginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const res = await fetch('data.json');
-  const users = await res.json();
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const fatherName = document.getElementById("fatherName").value.trim();
+      const caseNumber = document.getElementById("caseNumber").value.trim();
+      const idNumber = document.getElementById("idNumber").value.trim();
 
-  const matchedUser = users.find(user =>
-    user.firstName === formData.firstName &&
-    user.lastName === formData.lastName &&
-    user.fatherName === formData.fatherName &&
-    user.caseNumber === formData.caseNumber &&
-    user.idNumber === formData.idNumber
-  );
+      const user = users.find(u =>
+        u.firstName === firstName &&
+        u.lastName === lastName &&
+        u.fatherName === fatherName &&
+        u.caseNumber === caseNumber &&
+        u.idNumber === idNumber
+      );
 
-  if (matchedUser) {
-    localStorage.setItem('userLinks', JSON.stringify(matchedUser.links));
-    window.location.href = 'dashboard.html';
-  } else {
-    alert("اطلاعات شما در سیستم پیدا نشد.");
-  }
-});
+      if (user) {
+        loginSection.style.display = "none";
+        dashboard.style.display = "block";
+
+        // Assign button links
+        document.getElementById("btnResult").onclick = () => {
+          window.location.href = user.links.result;
+        };
+        document.getElementById("btnPassport").onclick = () => {
+          window.location.href = user.links.passport;
+        };
+        document.getElementById("btnCO").onclick = () => {
+          window.location.href = user.links.coLetter;
+        };
+        document.getElementById("btnMeeting").onclick = () => {
+          window.location.href = user.links.meeting;
+        };
+      } else {
+        errorEl.textContent = "No matching user found. Please check your information.";
+      }
+    });
+  });
