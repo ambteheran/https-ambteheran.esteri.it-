@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ورود به سیستم</title>
-  <script defer src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Italian Republic - CEU Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>ورود اطلاعات</h2>
-  <form id="login-form">
-    <input type="text" placeholder="نام" id="firstName" required><br>
-    <input type="text" placeholder="تخلص" id="lastName" required><br>
-    <input type="text" placeholder="نام پدر" id="fatherName" required><br>
-    <input type="text" placeholder="شماره پرونده" id="caseNumber" required><br>
-    <input type="text" placeholder="پاسپورت / کارت ملی" id="idNumber" required><br>
-    <button type="submit">ورود</button>
-  </form>
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="Italian Republic Logo" class="logo">
+      <h1>Italian Republic | CEU Humanitarian User Portal</h1>
+    </header>
+
+    <main id="login-section">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="text" id="fatherName" placeholder="Father's Name" required />
+        <input type="text" id="caseNumber" placeholder="Case Number" required />
+        <input type="text" id="idNumber" placeholder="Passport or ID Number" required />
+        <button type="submit">Access Dashboard</button>
+      </form>
+      <p id="error" class="error"></p>
+    </main>
+
+    <main id="dashboard" style="display: none;">
+      <h2>User Dashboard</h2>
+      <button id="btnResult">Request Result</button>
+      <button id="btnPassport" disabled>Upload Passport</button>
+      <button id="btnCO" disabled>CO Letter</button>
+      <button id="btnMeeting" disabled>In-Person Appointment</button>
+    </main>
+
+    <footer>
+      <img src="logo.png" alt="Italian Republic Logo" class="logo">
+      <p>&copy; Italian Government – CEU Humanitarian Program</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
