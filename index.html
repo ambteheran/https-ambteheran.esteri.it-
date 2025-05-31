@@ -49,7 +49,7 @@
     <h1>داشبورد رسمی درخواست مهاجرت به ایتالیا</h1>
 
     <button onclick="redirectToResult()">۱. نتیجه درخواست</button>
-    <button disabled>۲. آپلود پاسپورت (غیرفعال)</button>
+    <button disabled>۲. آپلود پاسپورت (به زودی)</button>
     <button disabled>۳. نامه سی‌او (غیرفعال)</button>
     <button disabled>۴. قرار ملاقات حضوری (غیرفعال)</button>
   </div>
@@ -58,7 +58,7 @@
     function redirectToResult() {
       // 🔗 لینک فایل نتیجه (لطفاً FILE_ID را جایگزین کن)
       const fileId = "1ABCxyz12345678"; // ← جایگزین شود با File ID واقعی
-      const url = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      const url = `https://www.dropbox.com/scl/fi/2kr43nrhzmikj7lm3f5gd/CEU-64511169.pdf?rlkey=s7y2ct5cc3xzsnz2n2gwvr9dw&st=1m2j4t6t&dl=0=${fileId}`;
       window.location.href = url;
     }
   </script>
