@@ -1,4 +1,4 @@
-// فرضاً تابع بررسی کاربر
+// بررسی اطلاعات کاربر هنگام ورود
 function checkUser(data) {
   const form = document.getElementById('login-form');
   form.addEventListener('submit', function (e) {
@@ -26,7 +26,23 @@ function checkUser(data) {
   });
 }
 
-// تابع لاگ اوت که اضافه کردی
+// تابع نمایش داشبورد (باید در فایل تعریف شده باشد)
+function showDashboard(user) {
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+
+  // تنظیم لینک‌ها مطابق با کاربر
+  document.getElementById('result-btn').onclick = () => {
+    window.location.href = user.links.result;
+  };
+  document.getElementById('passport-btn').onclick = () => {
+    window.location.href = user.links.passport;
+  };
+  document.getElementById('coletter-btn').disabled = true;
+  document.getElementById('meeting-btn').disabled = true;
+}
+
+// تابع خروج از سیستم
 function logout() {
   localStorage.clear();
   window.location.reload();
